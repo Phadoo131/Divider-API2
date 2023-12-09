@@ -5,6 +5,7 @@
 .classpath
 .project
 .settings/
+mylog.log
 
 # Ignore Spring Boot generated files
 target/
