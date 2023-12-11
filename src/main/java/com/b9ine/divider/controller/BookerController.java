@@ -16,13 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.b9ine.divider.model.Booker;
 import com.b9ine.divider.service.BookerService;
-import com.b9ine.divider.service.BookingService;
-import com.b9ine.divider.service.ClientService;
-import com.b9ine.divider.service.RestaurantService;
 
 @RestController
 @RequestMapping("/divider")
-public class DividerController {
+public class BookerController {
 
 	@Autowired
 	BookerService bkService;
