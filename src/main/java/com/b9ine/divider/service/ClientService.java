@@ -57,10 +57,10 @@ public class ClientService {
         return new ResponseEntity<>("Account was deleted successfully!", HttpStatus.OK);
     }
 
-    public Client updateBooker(Client client, Integer id) {
+    public Client updateClient(Client client, Integer id) {
         Optional<Client> checker = repo.findById(id);
-        if (checker == null) {
-            throw new RuntimeException();
+        if (checker.isEmpty()) {
+            throw new DataNotFoundException();
         } else {
             return repo.save(client);
         }
