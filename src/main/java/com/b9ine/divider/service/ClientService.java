@@ -1,5 +1,68 @@
 package com.b9ine.divider.service;
 
+import com.b9ine.divider.exception.CustomerAlreadyAddedException;
+import com.b9ine.divider.exception.CustomerNotFoundException;
+import com.b9ine.divider.model.Booker;
+import com.b9ine.divider.model.Client;
+import com.b9ine.divider.repository.ClientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
 public class ClientService {
+
+    @Autowired
+    ClientRepository repo;
+
+    public List<Client> findAll(){
+        return repo.findAll();
+    }
+
+    public Optional<Client> findOne(Integer id) {
+        Optional<Client> checker = repo.findById(id);
+
+        if (checker == null) {
+            throw new CustomerNotFoundException();
+        }
+
+        return checker;
+    }
+
+    public Client createAccount(Client client) {
+        Client checker = repo.findByEmail(client.getEmail());
+
+        if (checker != null) {
+            throw new RuntimeException();
+        }
+
+        return repo.save(client);
+    }
+
+    public ResponseEntity<Object> deleteAccount(Integer id) {
+        Optional<Client> checker = repo.findById(id);
+
+        if (checker != null) {
+            throw new RuntimeException();
+        }
+
+        repo.deleteById(id);
+
+        return new ResponseEntity<>("Account was deleted successfully!", HttpStatus.OK);
+    }
+
+    public Client updateBooker(Client client, Integer id) {
+        Optional<Client> checker = repo.findById(id);
+        if (checker == null) {
+            throw new RuntimeException();
+        } else {
+            return repo.save(client);
+        }
+
+    }
 
 }
