@@ -2,6 +2,8 @@ package com.b9ine.divider.service;
 
 import com.b9ine.divider.exception.CustomerAlreadyAddedException;
 import com.b9ine.divider.exception.CustomerNotFoundException;
+import com.b9ine.divider.exception.DataAlreadyAddedException;
+import com.b9ine.divider.exception.DataNotFoundException;
 import com.b9ine.divider.model.Booker;
 import com.b9ine.divider.model.Client;
 import com.b9ine.divider.repository.ClientRepository;
@@ -26,8 +28,8 @@ public class ClientService {
     public Optional<Client> findOne(Integer id) {
         Optional<Client> checker = repo.findById(id);
 
-        if (checker == null) {
-            throw new CustomerNotFoundException();
+        if (checker.isEmpty()) {
+            throw new DataNotFoundException();
         }
 
         return checker;
@@ -37,7 +39,7 @@ public class ClientService {
         Client checker = repo.findByEmail(client.getEmail());
 
         if (checker != null) {
-            throw new RuntimeException();
+            throw new DataAlreadyAddedException();
         }
 
         return repo.save(client);
@@ -46,8 +48,8 @@ public class ClientService {
     public ResponseEntity<Object> deleteAccount(Integer id) {
         Optional<Client> checker = repo.findById(id);
 
-        if (checker != null) {
-            throw new RuntimeException();
+        if (checker.isEmpty()) {
+            throw new DataNotFoundException();
         }
 
         repo.deleteById(id);
