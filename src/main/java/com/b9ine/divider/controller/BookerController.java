@@ -60,7 +60,5 @@ public class BookerController {
 	ResponseEntity<Object> deleteOne(@PathVariable("id") Integer id) {
 		return bkService.deleteAccount(id);
 	}
-	
-	
-	
+
 }
