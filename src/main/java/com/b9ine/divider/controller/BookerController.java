@@ -53,7 +53,7 @@ public class BookerController {
 		return bkService.updateBooker(booker, id);
 	}
 	
-	@DeleteMapping("/employees/{id}")
+	@DeleteMapping("/bookers/{id}")
 	ResponseEntity<Object> deleteOne(@PathVariable("id") Integer id) {
 		return bkService.deleteAccount(id);
 	}

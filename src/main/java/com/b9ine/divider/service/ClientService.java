@@ -1,10 +1,7 @@
 package com.b9ine.divider.service;
 
-import com.b9ine.divider.exception.CustomerAlreadyAddedException;
-import com.b9ine.divider.exception.CustomerNotFoundException;
 import com.b9ine.divider.exception.DataAlreadyAddedException;
 import com.b9ine.divider.exception.DataNotFoundException;
-import com.b9ine.divider.model.Booker;
 import com.b9ine.divider.model.Client;
 import com.b9ine.divider.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
