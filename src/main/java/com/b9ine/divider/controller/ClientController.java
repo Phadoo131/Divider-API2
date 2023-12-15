@@ -1,5 +1,6 @@
 package com.b9ine.divider.controller;
 
+import com.b9ine.divider.model.Booker;
 import com.b9ine.divider.model.Client;
 import com.b9ine.divider.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +12,23 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/clients")
+@RequestMapping("/dividers")
 public class ClientController {
 
     @Autowired
     ClientService service;
 
-    @GetMapping("/")
-    List<Client> selectOne() {
-        return service.findAll();
+    @GetMapping("/clients/")
+    List<Client> selectOne(@RequestParam String city) {
+        List<Client> answer = null;
+
+        if (city.isEmpty()) {
+            //http://localhost:8080/bookers/?city=
+            return service.findAll();
+        } else {
+            answer = service.findSpecificOne(city);
+            return answer;
+        }
     }
 
     @GetMapping("/clients/{id}")

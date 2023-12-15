@@ -64,6 +64,11 @@ public class BookerService {
 		}
 		
 	}
-	
-	
+
+	public List<Booker> findSpecificOne(String city){
+		return repo.findByCity(city);
+	}
+
+
+
 }

@@ -64,4 +64,7 @@ public class ClientService {
 
     }
 
+    public List<Client> findSpecificOne(String city) {
+        return repo.findByCity(city);
+    }
 }
