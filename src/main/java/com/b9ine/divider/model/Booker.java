@@ -1,17 +1,12 @@
 package com.b9ine.divider.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -46,5 +41,8 @@ public class Booker {
 	
 	@Column(name = "PASSWORD", nullable=false)
 	private String pwd;
+
+	@OneToMany(mappedBy = "bookerId")
+	private List<Booking> bookings;
 	
 }
