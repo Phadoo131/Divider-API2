@@ -16,15 +16,9 @@ public class BookerController {
 
 	@Autowired
 	BookerService bkService;
-	
-//	@Autowired
-//	ClientService clientService;
-//	
+
 //	@Autowired
 //	BookingService bookingService;
-//	
-//	@Autowired
-//	RestaurantService rsService;
 	
 	@GetMapping("/bookers/")
 	List<Booker> findAll(@RequestParam String city){

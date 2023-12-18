@@ -3,6 +3,7 @@ package com.b9ine.divider.service;
 import com.b9ine.divider.exception.DataAlreadyAddedException;
 import com.b9ine.divider.exception.DataNotFoundException;
 import com.b9ine.divider.model.Client;
+import com.b9ine.divider.model.Restaurant;
 import com.b9ine.divider.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,7 +60,11 @@ public class ClientService {
         if (checker.isEmpty()) {
             throw new DataNotFoundException();
         } else {
-            return repo.save(client);
+
+            Client newClient = checker.get();
+            newClient = client;
+
+            return repo.save(newClient);
         }
 
     }

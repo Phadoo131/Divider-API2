@@ -3,6 +3,7 @@ package com.b9ine.divider.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.b9ine.divider.model.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,9 +58,12 @@ public class BookerService {
 	
 	public Booker updateBooker(Booker booker, Integer id) {
 		Optional<Booker> checker = repo.findById(id);
-		if (checker == null) {
+		if (checker.isEmpty()) {
 			throw new CustomerNotFoundException();
 		} else {
+			Booker newBooker = checker.get();
+			newBooker = booker;
+
 			return repo.save(booker);
 		}
 		

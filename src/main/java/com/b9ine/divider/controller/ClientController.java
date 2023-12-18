@@ -23,7 +23,6 @@ public class ClientController {
         List<Client> answer = null;
 
         if (city.isEmpty()) {
-            //http://localhost:8080/bookers/?city=
             return service.findAll();
         } else {
             answer = service.findSpecificOne(city);
@@ -50,6 +49,7 @@ public class ClientController {
     ResponseEntity<Object> deleteOne(@PathVariable("id") Integer id) {
         return service.deleteAccount(id);
     }
+
 
 
 
