@@ -2,7 +2,6 @@ package com.b9ine.divider.service;
 
 import com.b9ine.divider.exception.DataAlreadyAddedException;
 import com.b9ine.divider.exception.DataNotFoundException;
-import com.b9ine.divider.model.Client;
 import com.b9ine.divider.model.Restaurant;
 import com.b9ine.divider.repository.RestaurantRepository;
 import org.springframework.http.HttpStatus;
