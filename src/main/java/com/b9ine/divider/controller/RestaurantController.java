@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/divider/")
+@RequestMapping("/divider")
 public class RestaurantController {
 
     @Autowired
