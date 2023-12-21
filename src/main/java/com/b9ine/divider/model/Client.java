@@ -38,10 +38,11 @@ public class Client {
 	@OneToOne
 	@JoinColumn(name = "CITY_ID", nullable=false)
 	City city;
-	
-	@Column(name = "BOOKER_PASSWORD", nullable=false)
-	private String pwd;
 
 	@OneToMany(mappedBy = "clientId")
 	private List<Booking> bookings;
+
+	@OneToOne
+	@JoinColumn(name = "USER_ID", nullable=false, unique=true)
+	private UserEntity userEntity;
 }

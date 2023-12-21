@@ -38,11 +38,12 @@ public class Booker {
 	@OneToOne
 	@JoinColumn(name = "CITY_ID", nullable=false)
 	City city;
-	
-	@Column(name = "PASSWORD", nullable=false)
-	private String pwd;
 
 	@OneToMany(mappedBy = "bookerId")
 	private List<Booking> bookings;
+
+	@OneToOne
+	@JoinColumn(name = "USER_ID", nullable=false, unique=true)
+	private UserEntity userEntity;
 	
 }
