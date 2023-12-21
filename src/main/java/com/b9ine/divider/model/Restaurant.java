@@ -19,21 +19,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "restaurants")
 public class Restaurant {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="RESTAURANT_ID")
 	private Integer id;
-	
+
 	@Column(name="RESTAURANT_NAME", nullable=false)
 	private String rsName;
-	
+
 	@Column(name="CONTACT_NUM", nullable=false)
 	private String contactNum;
-	
+
 	@Column(name="Address", nullable=false)
 	private String address;
-	
+
 	@OneToOne
 	@JoinColumn(name = "CITY_ID", nullable=false)
 	City city;

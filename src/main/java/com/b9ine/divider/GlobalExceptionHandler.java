@@ -15,12 +15,12 @@ import com.b9ine.divider.exception.CustomerAlreadyAddedException;
 import com.b9ine.divider.exception.CustomerNotFoundException;
 
 @ControllerAdvice
-public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {	
+public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(CustomerAlreadyAddedException.class)
 	public void springHandleDuplicated(HttpServletResponse response) throws IOException{
 		response.sendError(HttpStatus.NOT_ACCEPTABLE.value());
 	}
-	
+
 	@ExceptionHandler(CustomerNotFoundException.class)
 	public void springHandleNotFound(HttpServletResponse response) throws IOException{
 		response.sendError(HttpStatus.NOT_FOUND.value());

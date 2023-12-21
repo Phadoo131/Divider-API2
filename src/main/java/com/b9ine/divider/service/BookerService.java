@@ -19,43 +19,43 @@ public class BookerService {
 
 	@Autowired
 	BookerRepository repo;
-	
+
 	public List<Booker> findAll(){
 		return repo.findAll();
 	}
-	
+
 	public Optional<Booker> findOne(Integer id) {
 		Optional<Booker> checker = repo.findById(id);
-		
+
 		if (checker == null) {
 			throw new CustomerNotFoundException();
 		}
-		
+
 		return checker;
 	}
-	
+
 	public Booker createAccount(Booker booker) {
 		Booker checker = repo.findByEmail(booker.getEmail());
-		
+
 		if (checker != null) {
 			throw new CustomerAlreadyAddedException(checker);
 		}
-		
+
 		return repo.save(booker);
 	}
-	
+
 	public ResponseEntity<Object> deleteAccount(Integer id) {
 		Optional<Booker> checker = repo.findById(id);
-		
+
 		if (checker != null) {
 			throw new CustomerAlreadyAddedException(null);
 		}
-		
+
 		repo.deleteById(id);
-		
+
 		return new ResponseEntity<>("Account was deleted successfully!", HttpStatus.OK);
 	}
-	
+
 	public Booker updateBooker(Booker booker, Integer id) {
 		Optional<Booker> checker = repo.findById(id);
 		if (checker.isEmpty()) {
@@ -66,7 +66,7 @@ public class BookerService {
 
 			return repo.save(booker);
 		}
-		
+
 	}
 
 	public List<Booker> findSpecificOne(String city){

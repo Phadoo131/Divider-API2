@@ -26,22 +26,22 @@ public class Booking {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="BOOKING_ID", nullable=false)
 	private Integer id;
-	
+
 	@ManyToOne
 	@JoinColumn(name="CLIENT_ID", nullable=false)
 	Client clientId;
-	
+
 	@ManyToOne
 	@JoinColumn(name="BOOKER_ID", nullable=false)
 	Booker bookerId;
-	
+
 	@ManyToOne
 	@JoinColumn(name="RESTAURANT_ID", nullable=false)
 	Restaurant rsId;
-	
+
 	@Column(name="TIME_STAMP", nullable=false)
 	private LocalDate timeStamp;
-	
+
 	@Column(name="Status", nullable=false)
 	private String bookingStatus;
 }
