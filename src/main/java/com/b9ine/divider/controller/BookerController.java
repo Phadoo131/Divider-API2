@@ -2,7 +2,10 @@ package com.b9ine.divider.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import com.b9ine.divider.dto.BookerDTO;
+import com.b9ine.divider.util.MapperUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,38 +21,42 @@ public class BookerController {
 	BookerService bkService;
 
 	@GetMapping("/bookers/")
-	List<Booker> findAll(@RequestParam String city){
-		//return bkService.findAll();
-
-		List<Booker> answer = null;
+	List<BookerDTO> findAll(@RequestParam String city) {
+		List<BookerDTO> answer;
 
 		if (city.isEmpty()) {
-			//http://localhost:8080/bookers/?city=
-			return bkService.findAll();
+			// http://localhost:8080/bookers/?city=
+			return bkService.findAll().stream()
+					.map(MapperUtil::convertToDTO)
+					.collect(Collectors.toList());
 		} else {
-			answer = bkService.findSpecificOne(city);
+			answer = bkService.findSpecificOne(city).stream()
+					.map(MapperUtil::convertToDTO)
+					.collect(Collectors.toList());
 			return answer;
 		}
 	}
-	
 	@GetMapping("/bookers/{id}")
-	Optional<Booker> findOne(@PathVariable("id") Integer id){
-		return bkService.findOne(id);
+	Optional<BookerDTO> findOne(@PathVariable("id") Integer id) {
+		return bkService.findOne(id).map(MapperUtil::convertToDTO);
 	}
-	
+
 	@PostMapping("/bookers/")
-	Booker addOne(@RequestBody Booker booker){
-		return bkService.createAccount(booker);
+	BookerDTO addOne(@RequestBody BookerDTO bookerDTO) {
+		Booker booker = MapperUtil.convertToEntity(bookerDTO);
+		Booker savedBooker = bkService.createAccount(booker);
+		return MapperUtil.convertToDTO(savedBooker);
 	}
-	
+
 	@PutMapping("/bookers/{id}")
-	Booker updateOne(@RequestBody Booker booker, @PathVariable("id") Integer id) {
-		return bkService.updateBooker(booker, id);
+	BookerDTO updateOne(@RequestBody BookerDTO bookerDTO, @PathVariable("id") Integer id) {
+		Booker booker = MapperUtil.convertToEntity(bookerDTO);
+		Booker updatedBooker = bkService.updateBooker(booker, id);
+		return MapperUtil.convertToDTO(updatedBooker);
 	}
-	
+
 	@DeleteMapping("/bookers/{id}")
 	ResponseEntity<Object> deleteOne(@PathVariable("id") Integer id) {
 		return bkService.deleteAccount(id);
 	}
-
 }
