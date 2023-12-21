@@ -4,6 +4,8 @@ import com.b9ine.divider.dto.*;
 import com.b9ine.divider.model.*;
 import org.modelmapper.ModelMapper;
 
+import java.util.List;
+
 public class MapperUtil {
     private static final ModelMapper modelMapper = new ModelMapper();
 
@@ -46,5 +48,4 @@ public class MapperUtil {
     public static City convertToEntity(CityDTO locationDTO) {
         return modelMapper.map(locationDTO, City.class);
     }
-
 }
