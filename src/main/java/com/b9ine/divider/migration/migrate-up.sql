@@ -12,10 +12,12 @@ CREATE TABLE `bookers` (
   `booker_last_name` varchar(255) NOT NULL,
   `phone_num` varchar(255) NOT NULL,
   `city_id` varchar(255) NOT NULL,
+  `user_id` int NOT NULL,
   PRIMARY KEY (`booker_id`),
   UNIQUE KEY `uk_booker_email` (`booker_email`),
   KEY `fk_city_booker` (`city_id`),
   CONSTRAINT `fk_city_booker` FOREIGN KEY (`city_id`) REFERENCES `cities` (`city_id`)
+  CONSTRAINT `fk_user_client` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 CREATE TABLE `clients` (

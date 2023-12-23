@@ -42,8 +42,8 @@ public class Booker {
 	@OneToMany(mappedBy = "bookerId")
 	private List<Booking> bookings;
 
-//	@OneToOne
-//	@JoinColumn(name = "USER_ID", nullable=false, unique=true)
-//	private UserEntity userEntity;
+	@OneToOne
+	@JoinColumn(name = "USER_ID", nullable=false, unique=true)
+	private UserEntity userEntity;
 
 }
